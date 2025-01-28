@@ -1,27 +1,45 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './chatbot.css';
+import React, { useState, useEffect, useRef } from "react";
+import "./chatbot.css";
+import { FcGoogle } from "react-icons/fc";
+import { SiDuckduckgo } from "react-icons/si";
+import { BsBing } from "react-icons/bs";
+import { TbBrandYahoo } from "react-icons/tb";
+import { TbBrandWikipedia } from "react-icons/tb";
+import { FaGithub } from "react-icons/fa";
+import { BsAmazon } from "react-icons/bs";
+import { SiStartpage } from "react-icons/si";
+import { FaYandex } from "react-icons/fa";
+import { SiQwant } from "react-icons/si";
+import { SiEcosia } from "react-icons/si";
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const chatWindowRef = useRef(null); // Reference to the chat window
 
   const sendMessage = () => {
-    if (input.trim() === '') return;
+    if (input.trim() === "") return;
 
-    const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    
+    const currentTime = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
     // Add the user's message to the chat window
-    const userMessage = { text: input, time: currentTime, sender: 'user' };
+    const userMessage = { text: input, time: currentTime, sender: "user" };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
 
     // Clear the input box
-    setInput('');
+    setInput("");
 
     // Simulate a dummy response after a short delay
     setTimeout(() => {
       const dummyResponse = `You said: "${input}"`; // Create a dummy response
-      const supportMessage = { text: dummyResponse, time: currentTime, sender: 'support' };
+      const supportMessage = {
+        text: dummyResponse,
+        time: currentTime,
+        sender: "support",
+      };
       setMessages((prevMessages) => [...prevMessages, supportMessage]);
     }, 1000); // Simulate a 1-second delay for the response
 
@@ -57,11 +75,8 @@ const Chatbot = () => {
 
       <div className="chat-window" ref={chatWindowRef}>
         {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`chat-message ${msg.sender}`}
-          >
-            {msg.sender === 'user' ? (
+          <div key={index} className={`chat-message ${msg.sender}`}>
+            {msg.sender === "user" ? (
               <>
                 <p>{msg.text}</p>
                 <span className="time">{msg.time}</span>
@@ -70,13 +85,11 @@ const Chatbot = () => {
               <>
                 <p>{msg.text}</p>
                 <div>
-
                   <p>Title</p>
                   <p>Content</p>
-                  <div style={{backgroundColor: '#f4f4f9'}}>
-                  <p>URL of Product</p>
+                  <div style={{ backgroundColor: "#f4f4f9" }}>
+                    <p>URL of Product</p>
                   </div>
-                 
                 </div>
                 <span className="time">{msg.time}</span>
               </>
@@ -86,16 +99,53 @@ const Chatbot = () => {
       </div>
 
       <div className="chat-input">
-        <input
-          type="text"
-          placeholder="Type a message..."
-          className="message-box"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button className="send-button" onClick={sendMessage}>
-          <img src="./paper-plane.png" alt="Send" />
-        </button>
+        <div className="chat-input_message">
+          <input
+            type="text"
+            placeholder="Type a message..."
+            className="message-box"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <button className="send-button" onClick={sendMessage}>
+            <img src="./paper-plane.png" alt="Send" />
+          </button>
+        </div>
+        <div className="search-icon">
+          <span className="icon-container">
+            <FcGoogle fontSize={23} />
+          </span>
+          <span className="icon-container">
+            <SiDuckduckgo fontSize={23} />
+          </span>
+          <span className="icon-container">
+            <BsBing fontSize={23} />
+          </span>
+          <span className="icon-container">
+            <TbBrandYahoo fontSize={23} />
+          </span>
+          <span className="icon-container">
+            <TbBrandWikipedia fontSize={23} />
+          </span>
+          <span className="icon-container">
+            <FaGithub fontSize={23} />
+          </span>
+          <span className="icon-container">
+            <BsAmazon fontSize={23} />
+          </span>
+          <span className="icon-container">
+            <SiStartpage fontSize={23} />
+          </span>
+          <span className="icon-container">
+            <FaYandex fontSize={23} />
+          </span>
+          <span className="icon-container">
+            <SiQwant fontSize={23} />
+          </span>
+          <span className="icon-container">
+            <SiEcosia fontSize={23} />
+          </span>
+        </div>
       </div>
     </div>
   );

@@ -13,13 +13,9 @@ function App() {
 
   return (
     <>
-    <Chatbot />
-    </>
  
-
-   
-  
-    
+    <Chatbot />
+    </> 
     
   )
 }
