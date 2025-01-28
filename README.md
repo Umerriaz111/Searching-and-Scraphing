@@ -9,3 +9,4 @@ Complementing the search engine is the **Advanced Scraping Tool**, which automat
 Together, these tools form an integrated solution that simplifies how users access and work with digital information. By combining advanced search capabilities with powerful data extraction, they eliminate the need for juggling multiple platforms or tools. Whether you're a beginner or an expert, the user-friendly design and customizable features ensure that you can achieve your goals with minimal effort.
 
 Unlock the full potential of the digital world with the **Custom Search Engine (SearXNG)** and **Advanced Scraping Tool**—empowering you to search smarter and work faster.
+# Remaining Work:
