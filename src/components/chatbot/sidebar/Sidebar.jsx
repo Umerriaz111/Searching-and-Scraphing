@@ -3,9 +3,14 @@ import './Sidebar.css';
 import { FiMessageSquare, FiPlus, FiChevronRight } from 'react-icons/fi';
 import { FaBattleNet } from 'react-icons/fa';
 import { GoSidebarExpand, GoSidebarCollapse } from 'react-icons/go';
+import { useNavigate } from 'react-router-dom';
+
 
 const Sidebar = ({ onNewChat, onSelectChat }) => {
   // State to manage sidebar open/close status
+
+  const navigate = useNavigate();
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   // Function to toggle sidebar state
@@ -36,18 +41,21 @@ const Sidebar = ({ onNewChat, onSelectChat }) => {
         <div className="sidebar-scroll">
           {/* Today's Chats */}
           <div className="sidebar-section">
-            <h3>Today</h3>
-            <ul className="chat-list">
-              {["Chat 1", "Chat 2", "Chat 3"].map((chat, index) => (
-                <li key={index}>
-                  <FiMessageSquare className="chat-icon" />
-                  {chat}
-                  <FiChevronRight className="chevron-icon" />
-                </li>
-              ))}
-            </ul>
-          </div>
-
+      <h3>Today</h3>
+      <ul className="chat-list">
+        {["What is React", "Chat 2", "Chat 3"].map((chat, index) => (
+          <li 
+            key={index} 
+            onClick={() => navigate(`/chats/${chat}`)} // Navigate to the specific chat
+            style={{ cursor: 'pointer' }} // Optional: adds a pointer cursor to show it's clickable
+          >
+            <FiMessageSquare className="chat-icon" />
+            {chat}
+            <FiChevronRight className="chevron-icon" />
+          </li>
+        ))}
+      </ul>
+    </div>
           {/* Yesterday's Chats */}
           <div className="sidebar-section">
             <h3>Yesterday</h3>

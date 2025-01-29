@@ -3,9 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Chatbot from './components/chatbot/chatbot/Chatbot';
-
 import Sidebar from './components/chatbot/sidebar/Sidebar';
-
+import Home from './components/chatbot/Home/Home';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 
 function App() {
@@ -15,15 +15,27 @@ function App() {
     setShowChatbot(true); // Show chatbot when "New Chat" is clicked
 };
   return (
-    <>
-    <Sidebar onNewChat={handleNewChat} />
-            <div >
-                {showChatbot && <Chatbot />} {/* Render chatbot if showChatbot is true */}
-            </div> 
+
+    // Will use This Logic again
+    // <>
+    // <Sidebar onNewChat={handleNewChat} />
+    //         <div >
+    //             {showChatbot && <Chatbot />} {/* Render chatbot if showChatbot is true */}
+    //         </div> 
   
-            {/* <Chatbot />
-            <Sidebar/> */}
-    </> 
+    //         {/* <Chatbot />
+    //         <Sidebar/> */}
+    // </> 
+    <>
+     <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        
+        <Route path="/chats/:chat" element={<Chatbot />} /> 
+        
+      </Routes>
+    </BrowserRouter>
+    </>
     
   )
 }
