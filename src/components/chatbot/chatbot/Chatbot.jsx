@@ -17,6 +17,18 @@ const Chatbot = () => {
   const [input, setInput] = useState("");
   const chatWindowRef = useRef(null); // Reference to the chat window
 
+  // Predefined message history (this is the initial chat history when opening the chatbot)
+  useEffect(() => {
+    const initialMessages = [
+      { text: "Hello, how can I assist you today?", time: "09:00 AM", sender: "support" },
+      { text: "I have a question about my order status.", time: "09:02 AM", sender: "user" },
+      { text: "Can you please provide your order number?", time: "09:03 AM", sender: "support" },
+      { text: "My order number is 123456.", time: "09:05 AM", sender: "user" },
+      { text: "Thank you for that. Let me check the status for you.", time: "09:06 AM", sender: "support" },
+    ];
+    setMessages(initialMessages); // Set initial message history
+  }, []);
+
   const sendMessage = () => {
     if (input.trim() === "") return;
 
@@ -25,39 +37,22 @@ const Chatbot = () => {
       minute: "2-digit",
     });
 
-    // Add the user's message to the chat window
+    // Add user's message
     const userMessage = { text: input, time: currentTime, sender: "user" };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
 
     // Clear the input box
     setInput("");
 
-    // Simulate a dummy response after a short delay
-    setTimeout(() => {
-      const dummyResponse = `You said: "${input}"`; // Create a dummy response
-      const supportMessage = {
-        text: dummyResponse,
-        time: currentTime,
-        sender: "support",
-      };
-      setMessages((prevMessages) => [...prevMessages, supportMessage]);
-    }, 1000); // Simulate a 1-second delay for the response
+    // Simulate support response
+    const supportMessage = {
+      text: `Thank you for your message. You said: "${input}"`,
+      time: currentTime,
+      sender: "support",
+    };
 
-    // For API Call WE Can Used Below Code
-    // Send the user's message to the Flask backend
-    // fetch('/chat', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({ message: input })
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     const supportMessage = { text: data.response, time: currentTime, sender: 'support' };
-    //     setMessages((prevMessages) => [...prevMessages, supportMessage]);
-    //   })
-    //   .catch(error => console.error('Error:', error));
+    // Append support response to the message history
+    setMessages((prevMessages) => [...prevMessages, supportMessage]);
   };
 
   // Scroll to the bottom of the chat window whenever messages change
@@ -66,6 +61,7 @@ const Chatbot = () => {
       chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
     }
   }, [messages]);
+
   return (
     <div className="chatbot-container">
       <header className="chatbot-header">
@@ -76,24 +72,8 @@ const Chatbot = () => {
       <div className="chat-window" ref={chatWindowRef}>
         {messages.map((msg, index) => (
           <div key={index} className={`chat-message ${msg.sender}`}>
-            {msg.sender === "user" ? (
-              <>
-                <p>{msg.text}</p>
-                <span className="time">{msg.time}</span>
-              </>
-            ) : (
-              <>
-                <p>{msg.text}</p>
-                <div>
-                  <p>Title</p>
-                  <p>Content</p>
-                  <div style={{ backgroundColor: "#f4f4f9" }}>
-                    <p>URL of Product</p>
-                  </div>
-                </div>
-                <span className="time">{msg.time}</span>
-              </>
-            )}
+            <p>{msg.text}</p>
+            <span className="time">{msg.time}</span>
           </div>
         ))}
       </div>

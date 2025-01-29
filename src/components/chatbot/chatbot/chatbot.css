@@ -7,17 +7,21 @@
 
  body {
      font-family: Arial, sans-serif;
-     display: flex;
+     /* display: flex;
      justify-content: center;
      align-items: center;
-     height: 100vh;
+     height: 100vh; */
      background-color: #f4f4f9;
  }
 
  .chatbot-container {
+
      width: 800px;
      height: 700px;
+     margin-left: 35%;
+     margin-top: 2%;
      background-color: white;
+     
      border-radius: 20px;
      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
      display: flex;
@@ -170,11 +174,6 @@
      width: 20px;
      height: 20px;
  }
-
-
-
-
-
 
 
  .time {
