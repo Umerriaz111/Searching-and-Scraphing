@@ -6,7 +6,7 @@ import Chatbot from './components/chatbot/chatbot/Chatbot';
 import Sidebar from './components/chatbot/sidebar/Sidebar';
 import Home from './components/chatbot/Home/Home';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-
+import SidebarandHome from './components/chatbot/SidebarandChatbot/SidebarandHome';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,10 +29,8 @@ function App() {
     <>
      <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        
-        <Route path="/chats/:chat" element={<Chatbot />} /> 
-        
+      <Route path="/chats/:chat" element={<SidebarandHome />} /> 
+       <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
     </>

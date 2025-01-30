@@ -11,12 +11,15 @@ import { SiStartpage } from "react-icons/si";
 import { FaYandex } from "react-icons/fa";
 import { SiQwant } from "react-icons/si";
 import { SiEcosia } from "react-icons/si";
+import { useParams } from 'react-router-dom';
 
-const Chatbot = () => {
+const Chatbot = ({chatName}) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const chatWindowRef = useRef(null); // Reference to the chat window
 
+ // Decode the URL encoded string
+ console.log("This is Chat Name from Inside Chatbot",chatName);
   // Predefined message history (this is the initial chat history when opening the chatbot)
   useEffect(() => {
     const initialMessages = [
@@ -65,8 +68,8 @@ const Chatbot = () => {
   return (
     <div className="chatbot-container">
       <header className="chatbot-header">
-        <img src="./phoenix.png" alt="Logo" className="logo" />
-        <h1>Search Engine Bot</h1>
+        <img src="./world.png" alt="Logo" className="logo" />
+        <h1>Searching and Scraphing Bot</h1>
       </header>
 
       <div className="chat-window" ref={chatWindowRef}>

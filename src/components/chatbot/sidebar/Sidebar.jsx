@@ -21,7 +21,7 @@ const Sidebar = ({ onNewChat, onSelectChat }) => {
       {/* Sidebar Header with Logo and Toggle Button */}
       <div className="sidebar-header">
         <div className="logo-container">
-          <FaBattleNet fontSize={30} />
+          {/* <FaBattleNet fontSize={30} /> */}
         </div>
         <button className="sidebar-toggle-btn" onClick={toggleSidebar}>
           {isSidebarOpen ? <GoSidebarExpand /> : <GoSidebarCollapse />}
@@ -43,7 +43,7 @@ const Sidebar = ({ onNewChat, onSelectChat }) => {
           <div className="sidebar-section">
       <h3>Today</h3>
       <ul className="chat-list">
-        {["What is React", "Chat 2", "Chat 3"].map((chat, index) => (
+        {["What is React", "Search Shoes Under $10 ", "Scraph Nike Shoes"].map((chat, index) => (
           <li 
             key={index} 
             onClick={() => navigate(`/chats/${chat}`)} // Navigate to the specific chat
@@ -61,7 +61,10 @@ const Sidebar = ({ onNewChat, onSelectChat }) => {
             <h3>Yesterday</h3>
             <ul className="chat-list">
               {["Chat 3", "Chat 4"].map((chat, index) => (
-                <li key={index} onClick={() => onSelectChat(dummyChats[`chat${index + 1}`])}>
+                <li key={index} 
+                onClick={() => navigate(`/chats/${chat}`)} // Navigate to the specific chat
+                style={{ cursor: 'pointer' }} // Optional: adds a pointer cursor to show it's clickable
+                >
                   <FiMessageSquare className="chat-icon" />
                   {chat}
                   <FiChevronRight className="chevron-icon" />
